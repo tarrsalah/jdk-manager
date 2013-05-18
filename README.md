@@ -1,11 +1,13 @@
 # jdk-manager
 
-A very simple bash script to manage **multiple** `jdks` installation.
+A very simple bash script to manage **multiple** Java Developement Kits (`jdks`) installations.
 
 ## Installation
 
-`$ clone git://github.com/tarrsalah/jdk-manager.git ~/.jdk-manager`
+`$ git clone git://github.com/tarrsalah/jdk-manager.git ~/.jdk-manager`
 `$ echo ". ~/.jdk-manager/jdk-manager.bash" >> ~/.bash_profile`
+
+Open a new Terminal session (make sure that your terminal source .bash_profile).
 
 ## Customization
 
@@ -14,14 +16,14 @@ By default, `jdk-manager` assume that you store all the downloaded jdks in `~/lo
 
 ## Usage
 
-* to list all the jdk's installed:
-`$ jdk`
+* to list all the jdks installed: `$ jdk`
+
+* to pick a jdk: `$ jdk ${complete-jdk-version}`
 
 
 ![list jdks](https://raw.github.com/tarrsalah/jdk-manager/master/img/jdk.png)
 
-* to pick a jdk:
-`$ jdk ${complete-jdk-version}`
+
 
 
 ## TODO
