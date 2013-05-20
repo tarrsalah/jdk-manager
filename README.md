@@ -5,7 +5,8 @@ A very simple bash script to manage **multiple** Java Developement Kits (`jdks`)
 ## Installation
 
 `$ git clone git://github.com/tarrsalah/jdk-manager.git`
-`$ ./install.bash`
+
+`$ cd jdk-manager && ./install.bash`
 
 This will create a `.jdk-manager` directory in your home, and add a line to `.bash_profile` file.
 
