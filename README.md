@@ -4,8 +4,8 @@ A very simple bash script to manage **multiple** Java Developement Kits (`jdks`)
 
 ## Installation
 
-`$ git clone git://github.com/tarrsalah/jdk-manager.git
-`$ ./install.bash
+`$ git clone git://github.com/tarrsalah/jdk-manager.git`
+`$ ./install.bash`
 
 This will create a `.jdk-manager` directory in your home, and add a line to `.bash_profile` file.
 
@@ -14,6 +14,7 @@ Open a new Terminal session (make sure that your terminal source .bash_profile).
 ## Customization
 
 In `jdk-manager.bash`, set the variable `JDK_ROOT` to the directoty where all the jdk's are stored.
+
 By default, `jdk-manager` assume that you store all the downloaded jdks in `~/local`.
 
 ## Usage
