@@ -86,17 +86,17 @@ export JAVA_HOME=$CURRENT_JDK;
 export PATH="$JAVA_HOME/bin:$PATH"
 
 jdk() {
- if [[ $SESSION -eq 0 ]]
-  then
-  _print_java_ascii;
-  SESSION=1;
-fi
-_init_current;
+ if [[ $SESSION -eq 0 ]];
+ then
+   _print_java_ascii;
+   SESSION=1;
+ fi
+ _init_current;
 
-if [[ $# -eq 0 ]]
-then
-  _ls_jdks;
-else
-  _set_current_jdk $1
-fi
+ if [[ $# -eq 0 ]]
+ then
+   _ls_jdks;
+ else
+   _set_current_jdk $1
+ fi
 }
