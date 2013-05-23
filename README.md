@@ -22,10 +22,6 @@ By default, `jdk-manager` assume that you store all the downloaded jdks in `~/lo
 
 * to list all the jdks installed: `$ jdk`
 
-![list jdks](https://raw.github.com/tarrsalah/jdk-manager/master/img/jdk-one.gif)
-
-
-
 * to pick a jdk: `$ jdk ${complete-jdk-version}`
 
 ![list jdks](https://raw.github.com/tarrsalah/jdk-manager/master/img/jdk-two.gif)
