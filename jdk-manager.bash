@@ -3,22 +3,16 @@
 #set -u
 #set -e
 
-#to modify
 JDK_ROOT="$HOME/local" # change it to the directory that contain the jdk's
 
 JDK_PATTERN="[0-9]\.[0-9]\.+([0-9])?(_+([0-9]))"
 CURRENT_JDK="$JDK_ROOT/.current_jdk"
-SESSION=0;
 
 # colors 
 textred=$(tput setaf 1)
 texttyellow=$(tput setaf 3)
 textreset=$(tput sgr0)
 textgreen=$(tput setaf 2)
-
-########################################################################""
-# functions 
-########################################################################"
 
 # ascii art
 _print_java_ascii() {
@@ -34,7 +28,7 @@ printf ${texttyellow}"
 }
 
 _is_jdk() {
-  return `[[ "$1" == jdk${JDK_PATTERN} ]]`
+  [[ "$1" == jdk${JDK_PATTERN} ]];
 }
 
 
@@ -47,19 +41,20 @@ _init_current() {
 }
 
 _get_current_jdk() {
-  basename `readlink -f $CURRENT_JDK`
+  basename $(readlink -f $CURRENT_JDK)
 }
 # list all available jdks in the JDK_ROOT directory
-_ls_jdks() {
-  for file in $(ls $JDK_ROOT)
-  do
-    if `_is_jdk "$file"`
+_ls_jdks() {  
+  for file in $JDK_ROOT/*;
+  do  
+    file=${file##*/};
+    if $(_is_jdk $file )
      then
-      if [[ $file == `_get_current_jdk` ]]
+      if [[ $file == $(_get_current_jdk) ]]
        then
-	printf "${textgreen} > $file\n"
-      else
-	printf "${textreset}   $file\n"
+	       printf "${textgreen} > $file\n"
+       else
+	       printf "${textreset}   $file\n"
       fi
     fi
   done
@@ -67,23 +62,20 @@ _ls_jdks() {
 
 _set_current_jdk() {
   jdk="jdk$1"
-  if `_is_jdk $jdk` && [[ -d "$JDK_ROOT/$jdk" ]]
+  if $(_is_jdk $jdk) && [[ -d "$JDK_ROOT/$jdk" ]]
   then
     rm "$CURRENT_JDK"
     ln -sf "$JDK_ROOT/$jdk" "$CURRENT_JDK"
-    printf "${textgreen} INFO: ${textreset}Updating the \$JAVA_HOME to $JDK_ROOT/${textgreen}`_get_current_jdk`${textreset}  .\n\n";
+    printf "${textgreen} INFO: ${textreset}Updating the \$JAVA_HOME to $JDK_ROOT/${textgreen}$(_get_current_jdk)${textreset}  .\n\n";
     _ls_jdks;
   else
     printf "${textred} ERROR: ${textreset} there is no $jdk in $JDK_ROOT \n"
   fi
 }
 
-########################################################################""
-# main
-########################################################################"
-
 export JAVA_HOME=$CURRENT_JDK;
 export PATH="$JAVA_HOME/bin:$PATH"
+SESSION=0;
 
 jdk() {
  if [[ $SESSION -eq 0 ]];
